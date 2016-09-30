@@ -1,0 +1,32 @@
+{
+  "name": "complan",
+  "version": "1.0.0",
+  "description": "COMPLexity ANalyzer Tool For Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranavparikh/complan.git"
+  },
+  "keywords": [
+    "complexity",
+    "node",
+    "javascript"
+  ],
+  "dependencies": {
+    "bluebird": "^3.4.4",
+    "commander": "^2.9.0",
+    "complexity-report": "^1.4.1",
+    "git-clone": "^0.1.0",
+    "node-dir": "^0.1.16"
+  },
+  "author": "Pranav Parikh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pranavparikh/complan/issues"
+  },
+  "homepage": "https://github.com/pranavparikh/complan#readme"
+}
