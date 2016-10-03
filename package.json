@@ -1,6 +1,6 @@
 {
   "name": "complan",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "COMPLexity ANalyzer Tool For Javascript",
   "main": "index.js",
   "scripts": {
