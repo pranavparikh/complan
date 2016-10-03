@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const Fse = require('fs-extra');
 const Path = require('path');
 const Program = require('commander');
 
@@ -34,5 +35,13 @@ clone(gitUrl, path).then(function ()  {
 catch(function (err) {
     if (err) {
         console.log(err);
+    }
+}).
+finally(function () {
+    try {
+        Fse.removeSync(path);
+    } catch (e) {
+        console.error('Error in deleting ' + path);
+        console.error(e);
     }
 });
