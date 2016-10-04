@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
-const Fse = require('fs-extra')
-const Path = require('path')
 const Program = require('commander')
 
 const clone = require('./lib/clone')
 const getJsFiles = require('./lib/getJsFiles')
 const computeComplexity = require('./lib/computeComplexity')
 const generateReport = require('./lib/generateReport')
+const util = require('./lib/util')
 
 Program
     .version('0.0.1')
@@ -21,8 +20,7 @@ if (!Program.gitUrl) {
 }
 
 const gitUrl = Program.gitUrl
-const projectName = gitUrl.substr(gitUrl.lastIndexOf('/') + 1)
-const path = Path.join(process.cwd(), 'clonedrepos', projectName)
+const path = util.getProjectPath(gitUrl)
 
 clone(gitUrl, path).then(function () {
   return getJsFiles(path)
@@ -36,10 +34,5 @@ clone(gitUrl, path).then(function () {
     console.log(err)
   }
 }).finally(function () {
-  try {
-    Fse.removeSync(path)
-  } catch (e) {
-    console.error('Error in deleting ' + path)
-    console.error(e)
-  }
+  util.cleanupClonedRepos()
 })
