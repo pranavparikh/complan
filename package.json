@@ -1,6 +1,6 @@
 {
   "name": "complan",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "COMPLexity ANalyzer Tool For Javascript",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "bluebird": "^3.4.4",
     "commander": "^2.9.0",
     "complexity-report": "^1.4.1",
+    "debug": "^2.2.0",
     "fs-extra": "^0.30.0",
     "git-clone": "^0.1.0",
     "git-url-parse": "^6.0.5",

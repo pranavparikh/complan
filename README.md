@@ -35,6 +35,13 @@ sudo npm install -g complan
 ```
 complan -g <git url>
 ```
+```
+e.g 
+complan -g https://github.com/pranavparikh/complan
+or 
+complan -g git@github.com:pranavparikh/complan.git
+```
+The above command will generate complexity report under a directory named ```pranavparikh/complan``` in your current directory.
 
 The tool will locally clone the repository from git (Git has to be installed as a pre-requisite) , compute complexity and output it in a form of JSON report.
 

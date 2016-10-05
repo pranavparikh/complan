@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+const Debug = require('debug')('main')
 const Program = require('commander')
 
 const clone = require('./lib/clone')
@@ -7,9 +7,10 @@ const getJsFiles = require('./lib/getJsFiles')
 const computeComplexity = require('./lib/computeComplexity')
 const generateReport = require('./lib/generateReport')
 const util = require('./lib/util')
+const version = require('./package.json').version
 
 Program
-    .version('0.0.1')
+    .version(version)
     .usage('-g <giturl>')
     .option('-g, --gitUrl [url]', 'Git Url of the project you want complexity report for')
     .parse(process.argv)
@@ -20,15 +21,16 @@ if (!Program.gitUrl) {
 }
 
 const gitUrl = Program.gitUrl
-const path = util.getProjectPath(gitUrl)
+const clonedRepoPath = util.getClonedRepoPath(gitUrl)
+const reportsPath = util.getReportsPath(gitUrl)
 
-clone(gitUrl, path).then(function () {
-  return getJsFiles(path)
+clone(gitUrl, clonedRepoPath).then(function () {
+  return getJsFiles(clonedRepoPath)
 }).then(function (jsfiles) {
-  return computeComplexity(jsfiles)
+  return computeComplexity(jsfiles, reportsPath)
 }).then(function (path) {
   var complexityReport = generateReport(path)
-  console.log(JSON.stringify(complexityReport, null, 3))
+  Debug(JSON.stringify(complexityReport, null, 3))
 }).catch(function (err) {
   if (err) {
     console.log(err)
