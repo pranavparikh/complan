@@ -50,7 +50,7 @@ The tool will locally clone the repository from git (Git has to be installed as 
 ```
 -h, --help                            output usage information
 -g, --gitUrl <path>                   specify the http url or the git url of the repository
-
+```
 ## License
 
 [MIT]
