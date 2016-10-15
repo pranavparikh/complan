@@ -30,7 +30,7 @@ clone(gitUrl, clonedRepoPath).then(function () {
 }).then(function (jsfiles) {
   return computeComplexity(jsfiles, reportsPath)
 }).then(function (path) {
-  let complexityReport = generateReport(path, reportsPath)
+  let complexityReport = generateReport(path, reportsPath, gitUrl)
   Debug(JSON.stringify(complexityReport, null, 3))
 }).catch(function (err) {
   if (err) {
