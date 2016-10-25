@@ -12,8 +12,9 @@ const version = require('./package.json').version
 
 Program
     .version(version)
-    .usage('-g <giturl>')
+    .usage('-g <giturl> -c <gitcheckout>')
     .option('-g, --gitUrl [url]', 'Git Url of the project you want complexity report for')
+    .option('-c, --gitCheckout [branch/tag/checkout]', 'Branch / tag / checkout of the git project')
     .parse(process.argv)
 
 if (!Program.gitUrl) {
@@ -22,10 +23,13 @@ if (!Program.gitUrl) {
 }
 
 const gitUrl = Program.gitUrl
-const clonedRepoPath = util.getClonedRepoPath(gitUrl)
-const reportsPath = util.getReportsPath(gitUrl)
-
-clone(gitUrl, clonedRepoPath).then(function () {
+const gitCheckout = Program.gitCheckout || 'master'
+const clonedRepoPath = util.getClonedRepoPath(gitUrl, gitCheckout)
+const reportsPath = util.getReportsPath(gitUrl, gitCheckout)
+const cloneOptions = {
+  checkout: gitCheckout
+}
+clone(gitUrl, clonedRepoPath, cloneOptions).then(function () {
   return getJsFiles(clonedRepoPath)
 }).then(function (jsfiles) {
   return computeComplexity(jsfiles, reportsPath)
