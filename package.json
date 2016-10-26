@@ -1,6 +1,6 @@
 {
   "name": "complan",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "COMPLexity ANalyzer Tool For Javascript",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "fs-extra": "^0.30.0",
     "git-clone": "^0.1.0",
     "git-url-parse": "^6.0.5",
+    "lodash": "^4.16.4",
     "node-dir": "^0.1.16"
   },
   "pre-commit": [

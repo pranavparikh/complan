@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 'use strict'
-const Debug = require('debug')('main')
 const Program = require('commander')
 
 const clone = require('./lib/clone')
@@ -34,8 +33,7 @@ clone(gitUrl, clonedRepoPath, cloneOptions).then(function () {
 }).then(function (jsfiles) {
   return computeComplexity(jsfiles, reportsPath)
 }).then(function (path) {
-  let complexityReport = generateReport(path, reportsPath, gitUrl)
-  Debug(JSON.stringify(complexityReport, null, 3))
+  generateReport(path, reportsPath, gitUrl)
 }).catch(function (err) {
   if (err) {
     console.log(err)
