@@ -1,5 +1,7 @@
 # Complan
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pranavparikh/complan.svg)](https://greenkeeper.io/)
+
 A Complexity Analyzer Tool which computes software complexity for a Javascript project hosted on Github.
 
 * [How it works](#how-it-works)
