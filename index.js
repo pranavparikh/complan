@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 'use strict'
 const Program = require('commander')
+const Debug = require('debug')('Index')
 
 const clone = require('./lib/clone')
+
 const getJsFiles = require('./lib/getJsFiles')
 const computeComplexity = require('./lib/computeComplexity')
 const generateReport = require('./lib/generateReport')
@@ -29,15 +31,19 @@ const cloneOptions = {
   checkout: gitCheckout
 }
 clone(gitUrl, clonedRepoPath, cloneOptions).then(function () {
+  Debug('Cloned Repo Path:' + clonedRepoPath)
   return getJsFiles(clonedRepoPath)
 }).then(function (jsfiles) {
+  Debug('Computing complexity')
   return computeComplexity(jsfiles, reportsPath)
 }).then(function (path) {
+  Debug('Generating reports')
   generateReport(path, reportsPath, gitUrl)
 }).catch(function (err) {
   if (err) {
     console.log(err)
   }
 }).finally(function () {
+  Debug('Cleaning up repos')
   util.cleanupClonedRepos()
 })
