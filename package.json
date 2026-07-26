@@ -36,6 +36,6 @@
   "homepage": "https://github.com/pranavparikh/complan#readme",
   "devDependencies": {},
   "engines": {
-    "node": ">=20"
+    "node": ">=26.5.0"
   }
 }
