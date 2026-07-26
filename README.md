@@ -1,5 +1,7 @@
 # Complan
 
+[![CI](https://github.com/pranavparikh/complan/actions/workflows/ci.yml/badge.svg)](https://github.com/pranavparikh/complan/actions/workflows/ci.yml)
+
 A Complexity Analyzer Tool which computes software complexity for a Javascript project hosted on Github.
 
 * [How it works](#how-it-works)
