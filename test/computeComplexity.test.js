@@ -38,3 +38,17 @@ test('computeComplexity names the files that are missing from the report', async
     fs.rmSync(root, { recursive: true, force: true })
   }
 })
+
+test('computeComplexity does not fail on a stale or corrupt cc.json', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'complan-'))
+  const reportsPath = path.join(root, 'reports')
+  fs.mkdirSync(reportsPath)
+  fs.writeFileSync(path.join(reportsPath, 'cc.json'), 'not json')
+
+  try {
+    const jsonPath = await computeComplexity([], reportsPath)
+    assert.equal(jsonPath, path.join(reportsPath, 'cc.json'))
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true })
+  }
+})
