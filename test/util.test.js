@@ -26,6 +26,11 @@ test('getReportsPath creates the expected report directory', () => {
   assert.equal(fs.existsSync(reportsPath), true)
 })
 
+test('getClonedRepoPath cannot escape the cloned repos directory', () => {
+  const result = path.resolve(util.getClonedRepoPath('git@github.com:../..'))
+  assert.equal(result, path.join(process.cwd(), 'clonedrepos'))
+})
+
 test('cleanupClonedRepos removes the cloned repos directory', () => {
   const cloneDir = path.join(process.cwd(), 'clonedrepos')
   fs.mkdirSync(cloneDir, { recursive: true })
