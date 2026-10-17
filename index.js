@@ -51,6 +51,7 @@ program.parseAsync(process.argv)
       .catch(function (err) {
         if (err) {
           console.log(err)
+          process.exitCode = 1
         }
       })
       .finally(function () {
@@ -61,5 +62,6 @@ program.parseAsync(process.argv)
   .catch(function (err) {
     if (err) {
       console.log(err)
+      process.exitCode = 1
     }
   })
